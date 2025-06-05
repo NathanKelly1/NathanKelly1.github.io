@@ -130,3 +130,41 @@ document.querySelectorAll('.experience-card, .project-card').forEach(el => {
 // Dynamic year in footer
 document.querySelector('.copyright').textContent = 
     document.querySelector('.copyright').textContent.replace('2024', new Date().getFullYear());
+
+// 3D Tilt effect for insanely modern project card
+const fitBuddyCard = document.querySelector('.project-card.modern-3d');
+if (fitBuddyCard) {
+    fitBuddyCard.addEventListener('mousemove', (e) => {
+        const rect = fitBuddyCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * 10;
+        const rotateY = ((x - centerX) / centerX) * 10;
+        fitBuddyCard.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`;
+        fitBuddyCard.style.boxShadow = `0 12px 48px 0 #00ffb3cc, 0 2px 16px 0 #2563eb80`;
+    });
+    fitBuddyCard.addEventListener('mouseleave', () => {
+        fitBuddyCard.style.transform = '';
+        fitBuddyCard.style.boxShadow = '';
+    });
+    // Touch support
+    fitBuddyCard.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 1) {
+            const rect = fitBuddyCard.getBoundingClientRect();
+            const x = e.touches[0].clientX - rect.left;
+            const y = e.touches[0].clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * 10;
+            const rotateY = ((x - centerX) / centerX) * 10;
+            fitBuddyCard.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`;
+            fitBuddyCard.style.boxShadow = `0 12px 48px 0 #00ffb3cc, 0 2px 16px 0 #2563eb80`;
+        }
+    });
+    fitBuddyCard.addEventListener('touchend', () => {
+        fitBuddyCard.style.transform = '';
+        fitBuddyCard.style.boxShadow = '';
+    });
+}

@@ -156,8 +156,24 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="card project-card">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300" style="position:relative;">
+                <div id="fitbuddy-blob-bg">
+                    <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="blobGradient" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#00ffb3"/>
+                                <stop offset="100%" stop-color="#2563eb"/>
+                            </linearGradient>
+                        </defs>
+                        <path id="fitbuddy-blob-path" fill="url(#blobGradient)" d="M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z">
+                            <animate attributeName="d" dur="8s" repeatCount="indefinite"
+                                values="M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z;
+                                        M340,100Q370,180,320,240Q270,300,180,300Q90,300,70,210Q50,120,120,90Q190,60,260,80Q330,100,340,100Z;
+                                        M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z"/>
+                        </path>
+                    </svg>
+                </div>
+                <div class="card project-card modern-3d">
                     <div id="fitbuddyCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -180,7 +196,7 @@
                         <h4>FitBuddy Mobile App</h4>
                         <p class="card-text">A modern fitness companion app to track workouts, schedule routines, and analyze your progress. Built with a sleek, user-friendly interface for a seamless fitness journey.</p>
                         <div class="project-links">
-                            <a href="#" class="btn btn-outline-primary disabled">
+                            <a href="#" class="btn btn-outline-primary btn-modern-shine disabled">
                                 <i class="fas fa-link me-2"></i>Coming Soon
                             </a>
                         </div>

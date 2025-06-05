@@ -241,19 +241,86 @@ section {
     background-color: var(--background);
 }
 
-.project-card {
+/* --- 3D TILT & ANIMATED BORDER --- */
+.project-card.modern-3d {
+    --border-width: 4px;
+    --border-radius: 2rem;
+    --border-gradient: conic-gradient(from 0deg, #00ffb3, #2563eb, #3b82f6, #00ffb3 100%);
+    position: relative;
+    z-index: 1;
     border: none;
-    border-radius: 1rem;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    height: 100%;
-    background: white;
-    box-shadow: var(--shadow-md);
+    border-radius: var(--border-radius);
+    background: rgba(30, 41, 59, 0.7);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 1.5px 8px 0 #00ffb3a0;
+    overflow: visible;
+    transition: box-shadow 0.4s cubic-bezier(.4,2,.6,1), transform 0.3s cubic-bezier(.4,2,.6,1);
+}
+.project-card.modern-3d::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: calc(-1 * var(--border-width));
+    border-radius: var(--border-radius);
+    background: var(--border-gradient);
+    background-size: 200% 200%;
+    animation: border-rotate 3s linear infinite;
+    filter: blur(1.5px) brightness(1.2);
+}
+@keyframes border-rotate {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+.project-card.modern-3d:active, .project-card.modern-3d:focus-within {
+    box-shadow: 0 0 32px 8px #00ffb3cc, 0 0 64px 16px #2563ebcc;
+    outline: 2px solid #00ffb3;
 }
 
-.project-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: var(--shadow-lg);
+/* 3D Tilt transition */
+.project-card.modern-3d {
+    will-change: transform;
+    perspective: 800px;
+}
+
+/* --- BUTTON SHINE EFFECT --- */
+.btn-modern-shine {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.btn-modern-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.2) 100%);
+    transform: translateX(-100%) rotate(25deg);
+    transition: transform 0.7s cubic-bezier(.4,2,.6,1);
+    pointer-events: none;
+}
+.btn-modern-shine:hover::after {
+    transform: translateX(100%) rotate(25deg);
+}
+
+/* --- ANIMATED SVG BLOB BACKGROUND (for project section) --- */
+#fitbuddy-blob-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 420px;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0.45;
+    filter: blur(8px) saturate(1.2);
+}
+@media (max-width: 600px) {
+    #fitbuddy-blob-bg {
+        width: 260px;
+        height: 260px;
+    }
 }
 
 .project-card img {
@@ -541,3 +608,97 @@ section {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
     transition: transform 0.3s ease;
   }
+
+/* Carousel Modernization */
+.carousel {
+    border-radius: 1.5rem 1.5rem 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 0 4px #00ffb3a0;
+    background: linear-gradient(120deg, #181f2f 60%, #2563eb 100%);
+    position: relative;
+}
+.carousel-inner {
+    border-radius: 1.5rem 1.5rem 0 0;
+}
+.carousel-item img {
+    border-radius: 1.5rem 1.5rem 0 0;
+    filter: drop-shadow(0 2px 16px #00ffb3a0) saturate(1.2) contrast(1.1);
+    transition: filter 0.4s;
+}
+.carousel-item.active img {
+    filter: drop-shadow(0 4px 32px #00ffb3cc) saturate(1.3) contrast(1.2);
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #00ffb3;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ffb3cc;
+    transition: background 0.3s;
+}
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    background-color: #2563eb;
+}
+
+/* Glowing Button */
+.btn-outline-primary, .btn-primary {
+    box-shadow: 0 0 0 0 #00ffb3, 0 0 0 0 #2563eb;
+    position: relative;
+    z-index: 1;
+    background-clip: padding-box;
+    transition: box-shadow 0.3s, background 0.3s, color 0.3s;
+}
+.btn-outline-primary:hover, .btn-primary:hover {
+    box-shadow: 0 0 16px 2px #00ffb3, 0 0 32px 4px #2563eb;
+    background: linear-gradient(90deg, #00ffb3 0%, #2563eb 100%);
+    color: #fff !important;
+    border-color: #00ffb3;
+}
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
+    background: none;
+    color: #00ffb3 !important;
+    border-color: #00ffb3;
+    opacity: 0.7;
+}
+
+/* Micro-interactions */
+.project-card .card-body h4 {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: #fff;
+    text-shadow: 0 2px 8px #2563eb80;
+    margin-bottom: 0.5rem;
+}
+.project-card .card-text {
+    color: #e0e7ef;
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 1px 4px #181f2f80;
+}
+.project-links .btn {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    border-radius: 0.7rem;
+    padding: 0.7rem 2.2rem;
+}
+
+/* Neon Glow for Project Card on Focus */
+.project-card:focus-within, .project-card:active {
+    box-shadow: 0 0 32px 8px #00ffb3cc, 0 0 64px 16px #2563ebcc;
+    outline: 2px solid #00ffb3;
+}
+
+/* Responsive Modern Tweaks */
+@media (max-width: 991px) {
+    .project-card {
+        margin-bottom: 2.5rem;
+    }
+}
+@media (max-width: 600px) {
+    .project-card {
+        border-radius: 1.2rem;
+    }
+    .carousel, .carousel-inner, .carousel-item img {
+        border-radius: 1.2rem 1.2rem 0 0;
+    }
+}
