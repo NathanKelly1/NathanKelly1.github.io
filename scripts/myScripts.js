@@ -76,25 +76,108 @@ function typeWriter() {
 // Start typing effect when page loads
 window.addEventListener('load', typeWriter);
 
-// Form validation and animation
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Add success animation
-        const button = contactForm.querySelector('button[type="submit"]');
-        button.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-        button.classList.add('success');
-        
-        // Reset form after animation
-        setTimeout(() => {
-            contactForm.reset();
-            button.innerHTML = 'Send Message';
-            button.classList.remove('success');
-        }, 3000);
-    });
+// Initialize EmailJS
+emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+
+// Contact form handling
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.querySelector('.form-status');
+const submitButton = contactForm.querySelector('button[type="submit"]');
+const buttonText = submitButton.querySelector('.button-text');
+const spinner = submitButton.querySelector('.spinner-border');
+
+function showFormStatus(message, type) {
+    formStatus.textContent = message;
+    formStatus.className = `form-status ${type}`;
+    formStatus.style.display = 'block';
 }
+
+function setLoading(isLoading) {
+    submitButton.disabled = isLoading;
+    buttonText.textContent = isLoading ? 'Sending...' : 'Send Message';
+    spinner.classList.toggle('d-none', !isLoading);
+}
+
+function validateForm() {
+    const form = contactForm;
+    const inputs = form.querySelectorAll('input, textarea');
+    let isValid = true;
+
+    inputs.forEach(input => {
+        if (input.hasAttribute('required')) {
+            if (!input.value.trim()) {
+                input.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                input.classList.remove('is-invalid');
+                input.classList.add('is-valid');
+            }
+        }
+
+        if (input.type === 'email' && input.value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(input.value)) {
+                input.classList.add('is-invalid');
+                isValid = false;
+            }
+        }
+
+        if (input.hasAttribute('minlength')) {
+            const minLength = parseInt(input.getAttribute('minlength'));
+            if (input.value.length < minLength) {
+                input.classList.add('is-invalid');
+                isValid = false;
+            }
+        }
+    });
+
+    return isValid;
+}
+
+contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+        showFormStatus('Please fill in all required fields correctly.', 'error');
+        return;
+    }
+
+    setLoading(true);
+    showFormStatus('', '');
+
+    const formData = {
+        name: contactForm.name.value,
+        email: contactForm.email.value,
+        subject: contactForm.subject.value,
+        message: contactForm.message.value
+    };
+
+    try {
+        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData);
+        showFormStatus('Message sent successfully! I will get back to you soon.', 'success');
+        contactForm.reset();
+        contactForm.querySelectorAll('.is-valid').forEach(input => {
+            input.classList.remove('is-valid');
+        });
+    } catch (error) {
+        console.error('Error sending email:', error);
+        showFormStatus('Failed to send message. Please try again later.', 'error');
+    } finally {
+        setLoading(false);
+    }
+});
+
+// Real-time validation
+contactForm.querySelectorAll('input, textarea').forEach(input => {
+    input.addEventListener('input', () => {
+        if (input.value.trim()) {
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+        } else {
+            input.classList.remove('is-valid');
+        }
+    });
+});
 
 // Project card hover effect
 document.querySelectorAll('.project-card').forEach(card => {
@@ -239,4 +322,26 @@ particlesJS('particles-js', {
         }
     },
     retina_detect: true
+});
+
+// Skills section animation
+const skillItems = document.querySelectorAll('.skill-item');
+const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            const progressBar = entry.target.querySelector('.progress-bar');
+            const width = progressBar.getAttribute('aria-valuenow') + '%';
+            progressBar.style.width = '0';
+            setTimeout(() => {
+                progressBar.style.width = width;
+            }, 100);
+        }
+    });
+}, {
+    threshold: 0.2
+});
+
+skillItems.forEach(item => {
+    skillObserver.observe(item);
 });
