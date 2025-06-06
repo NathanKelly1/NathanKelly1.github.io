@@ -332,16 +332,22 @@ const skillObserver = new IntersectionObserver((entries) => {
             entry.target.classList.add('animate');
             const progressBar = entry.target.querySelector('.progress-bar');
             const width = progressBar.getAttribute('aria-valuenow') + '%';
+            // Reset width to 0 first
             progressBar.style.width = '0';
-            setTimeout(() => {
+            // Force a reflow
+            progressBar.offsetHeight;
+            // Animate to the target width
+            requestAnimationFrame(() => {
                 progressBar.style.width = width;
-            }, 100);
+            });
         }
     });
 }, {
-    threshold: 0.2
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
 });
 
+// Observe all skill items
 skillItems.forEach(item => {
     skillObserver.observe(item);
 });

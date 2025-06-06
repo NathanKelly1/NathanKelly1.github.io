@@ -889,6 +889,7 @@ section {
     background-color: var(--background);
     position: relative;
     overflow: hidden;
+    padding: 80px 0;
 }
 
 .skills-section::before {
@@ -924,6 +925,9 @@ section {
 
 .skill-item {
     margin-bottom: 1.5rem;
+    opacity: 1;
+    transform: none;
+    transition: transform 0.5s ease;
 }
 
 .skill-info {
@@ -955,6 +959,7 @@ section {
     transition: width 1.5s ease-in-out;
     position: relative;
     overflow: hidden;
+    width: 0;
 }
 
 .progress-bar::after {
@@ -1003,13 +1008,6 @@ section {
 }
 
 /* Animate progress bars when they come into view */
-.skill-item {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease;
-}
-
 .skill-item.animate {
-    opacity: 1;
     transform: translateY(0);
 }
