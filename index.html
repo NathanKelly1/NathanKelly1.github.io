@@ -244,28 +244,72 @@
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Projects</h2>
         <div class="row">
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card project-card">
-                    <img class="card-img-top" src="images/timelessmovies.png" alt="Cinema Website">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100" style="position:relative;">
+                <div class="project-blob-bg">
+                    <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="blobGradient1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#ff6b6b"/>
+                                <stop offset="100%" stop-color="#4ecdc4"/>
+                            </linearGradient>
+                        </defs>
+                        <path class="blob-path" fill="url(#blobGradient1)" d="M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z">
+                            <animate attributeName="d" dur="8s" repeatCount="indefinite"
+                                values="M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z;
+                                        M340,100Q370,180,320,240Q270,300,180,300Q90,300,70,210Q50,120,120,90Q190,60,260,80Q330,100,340,100Z;
+                                        M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z"/>
+                        </path>
+                    </svg>
+                </div>
+                <div class="card project-card modern-3d">
+                    <div id="cinemaCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="images/timelessmovies.png" class="d-block w-100" alt="Cinema Website">
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <h4>Cinema Website</h4>
-                        <p class="card-text">A modern cinema booking platform built with Django</p>
+                        <p class="card-text">A modern cinema booking platform built with Django, featuring real-time seat selection, payment processing, and user authentication.</p>
                         <div class="project-links">
-                            <a href="https://github.com/NathanKelly1/CA2-nathan-shane" class="btn btn-outline-primary">
+                            <a href="https://github.com/NathanKelly1/CA2-nathan-shane" class="btn btn-outline-primary btn-modern-shine">
                                 <i class="fab fa-github me-2"></i>View on GitHub
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="card project-card">
-                    <img class="card-img-top" src="images/videogamestore.png" alt="Video Game Store">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200" style="position:relative;">
+                <div class="project-blob-bg">
+                    <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="blobGradient2" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#a8e6cf"/>
+                                <stop offset="100%" stop-color="#3d5af1"/>
+                            </linearGradient>
+                        </defs>
+                        <path class="blob-path" fill="url(#blobGradient2)" d="M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z">
+                            <animate attributeName="d" dur="8s" repeatCount="indefinite"
+                                values="M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z;
+                                        M340,100Q370,180,320,240Q270,300,180,300Q90,300,70,210Q50,120,120,90Q190,60,260,80Q330,100,340,100Z;
+                                        M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z"/>
+                        </path>
+                    </svg>
+                </div>
+                <div class="card project-card modern-3d">
+                    <div id="gameStoreCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="images/videogamestore.png" class="d-block w-100" alt="Video Game Store">
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <h4>Video Game Store</h4>
-                        <p class="card-text">E-commerce platform for video games</p>
+                        <p class="card-text">An e-commerce platform for video games with secure payment processing, user reviews, and an intuitive shopping experience.</p>
                         <div class="project-links">
-                            <a href="https://X00182498@dev.azure.com/X00182498/2nd%20Year%20Project/_git/2nd%20Year%20Project" class="btn btn-outline-primary">
+                            <a href="https://X00182498@dev.azure.com/X00182498/2nd%20Year%20Project/_git/2nd%20Year%20Project" class="btn btn-outline-primary btn-modern-shine">
                                 <i class="fab fa-azure me-2"></i>View on Azure
                             </a>
                         </div>
@@ -273,15 +317,15 @@
                 </div>
             </div>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300" style="position:relative;">
-                <div id="fitbuddy-blob-bg">
+                <div class="project-blob-bg">
                     <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="blobGradient" x1="0" y1="0" x2="1" y2="1">
+                            <linearGradient id="blobGradient3" x1="0" y1="0" x2="1" y2="1">
                                 <stop offset="0%" stop-color="#00ffb3"/>
                                 <stop offset="100%" stop-color="#2563eb"/>
                             </linearGradient>
                         </defs>
-                        <path id="fitbuddy-blob-path" fill="url(#blobGradient)" d="M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z">
+                        <path class="blob-path" fill="url(#blobGradient3)" d="M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z">
                             <animate attributeName="d" dur="8s" repeatCount="indefinite"
                                 values="M320,60Q360,120,320,180Q280,240,210,270Q140,300,90,240Q40,180,90,120Q140,60,210,60Q280,60,320,60Z;
                                         M340,100Q370,180,320,240Q270,300,180,300Q90,300,70,210Q50,120,120,90Q190,60,260,80Q330,100,340,100Z;
@@ -312,8 +356,8 @@
                         <h4>FitBuddy Mobile App</h4>
                         <p class="card-text">A modern fitness companion app to track workouts, schedule routines, and analyze your progress. Built with a sleek, user-friendly interface for a seamless fitness journey.</p>
                         <div class="project-links">
-                            <a href="#" class="btn btn-outline-primary btn-modern-shine disabled">
-                                <i class="fas fa-link me-2"></i>Coming Soon
+                            <a href="https://github.com/PROJ-24-25/docs-and-code-NathanKelly1.git" class="btn btn-outline-primary btn-modern-shine">
+                                <i class="fab fa-github me-2"></i>View on GitHub
                             </a>
                         </div>
                     </div>

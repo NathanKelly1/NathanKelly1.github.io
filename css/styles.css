@@ -321,70 +321,8 @@ section {
     background-color: var(--background);
 }
 
-/* --- 3D TILT & ANIMATED BORDER --- */
-.project-card.modern-3d {
-    --border-width: 4px;
-    --border-radius: 2rem;
-    --border-gradient: conic-gradient(from 0deg, #00ffb3, #2563eb, #3b82f6, #00ffb3 100%);
-    position: relative;
-    z-index: 1;
-    border: none;
-    border-radius: var(--border-radius);
-    background: rgba(30, 41, 59, 0.7);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 1.5px 8px 0 #00ffb3a0;
-    overflow: visible;
-    transition: box-shadow 0.4s cubic-bezier(.4,2,.6,1), transform 0.3s cubic-bezier(.4,2,.6,1);
-}
-.project-card.modern-3d::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    inset: calc(-1 * var(--border-width));
-    border-radius: var(--border-radius);
-    background: var(--border-gradient);
-    background-size: 200% 200%;
-    animation: border-rotate 3s linear infinite;
-    filter: blur(1.5px) brightness(1.2);
-}
-@keyframes border-rotate {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-}
-.project-card.modern-3d:active, .project-card.modern-3d:focus-within {
-    box-shadow: 0 0 32px 8px #00ffb3cc, 0 0 64px 16px #2563ebcc;
-    outline: 2px solid #00ffb3;
-}
-
-/* 3D Tilt transition */
-.project-card.modern-3d {
-    will-change: transform;
-    perspective: 800px;
-}
-
-/* --- BUTTON SHINE EFFECT --- */
-.btn-modern-shine {
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-.btn-modern-shine::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.2) 100%);
-    transform: translateX(-100%) rotate(25deg);
-    transition: transform 0.7s cubic-bezier(.4,2,.6,1);
-    pointer-events: none;
-}
-.btn-modern-shine:hover::after {
-    transform: translateX(100%) rotate(25deg);
-}
-
-/* --- ANIMATED SVG BLOB BACKGROUND (for project section) --- */
-#fitbuddy-blob-bg {
+/* Project Cards */
+.project-blob-bg {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -396,25 +334,148 @@ section {
     opacity: 0.45;
     filter: blur(8px) saturate(1.2);
 }
-@media (max-width: 600px) {
-    #fitbuddy-blob-bg {
-        width: 260px;
-        height: 260px;
-    }
+
+.project-card.modern-3d {
+    --border-width: 4px;
+    --border-radius: 2rem;
+    position: relative;
+    z-index: 1;
+    border: none;
+    border-radius: var(--border-radius);
+    background: rgba(30, 41, 59, 0.7);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    overflow: visible;
+    transition: all 0.4s cubic-bezier(.4,2,.6,1);
+    backdrop-filter: blur(10px);
 }
 
-.project-card img {
+.project-card.modern-3d::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: calc(-1 * var(--border-width));
+    border-radius: var(--border-radius);
+    background: var(--gradient-3);
+    background-size: 200% 200%;
+    animation: border-rotate 3s linear infinite;
+    filter: blur(1.5px) brightness(1.2);
+}
+
+.project-card.modern-3d:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.5);
+}
+
+.project-card.modern-3d .card-body {
+    padding: 2rem;
+    color: white;
+}
+
+.project-card.modern-3d h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: var(--gradient-3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.project-card.modern-3d .card-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.project-card.modern-3d .carousel {
+    border-radius: 1.5rem 1.5rem 0 0;
+    overflow: hidden;
+    margin: -1px -1px 0;
+}
+
+.project-card.modern-3d .carousel-item img {
     height: 250px;
     object-fit: cover;
+    filter: brightness(0.9) contrast(1.1);
     transition: transform 0.3s ease;
 }
 
-.project-card:hover img {
-    transform: scale(1.1);
+.project-card.modern-3d:hover .carousel-item img {
+    transform: scale(1.05);
 }
 
-.project-links {
-    margin-top: 1rem;
+.project-card.modern-3d .carousel-control-prev,
+.project-card.modern-3d .carousel-control-next {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 1rem;
+}
+
+.project-card.modern-3d .carousel-control-prev-icon,
+.project-card.modern-3d .carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.project-links .btn-modern-shine {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-links .btn-modern-shine:hover {
+    background: var(--gradient-3);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+}
+
+.project-links .btn-modern-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.project-links .btn-modern-shine:hover::before {
+    left: 100%;
+}
+
+@media (max-width: 991px) {
+    .project-blob-bg {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-card.modern-3d {
+        margin-bottom: 2rem;
+    }
+    
+    .project-blob-bg {
+        width: 250px;
+        height: 250px;
+    }
 }
 
 /* Contact Section */
@@ -821,21 +882,6 @@ section {
 .project-card:focus-within, .project-card:active {
     box-shadow: 0 0 32px 8px #00ffb3cc, 0 0 64px 16px #2563ebcc;
     outline: 2px solid #00ffb3;
-}
-
-/* Responsive Modern Tweaks */
-@media (max-width: 991px) {
-    .project-card {
-        margin-bottom: 2.5rem;
-    }
-}
-@media (max-width: 600px) {
-    .project-card {
-        border-radius: 1.2rem;
-    }
-    .carousel, .carousel-inner, .carousel-item img {
-        border-radius: 1.2rem 1.2rem 0 0;
-    }
 }
 
 /* Skills Section */
