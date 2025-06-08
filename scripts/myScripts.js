@@ -77,7 +77,7 @@ function typeWriter() {
 window.addEventListener('load', typeWriter);
 
 // Initialize EmailJS
-emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+emailjs.init("xTG6Z1KsiZsfRCI3k");
 
 // Contact form handling
 const contactForm = document.getElementById('contactForm');
@@ -149,11 +149,12 @@ contactForm.addEventListener('submit', async (e) => {
         name: contactForm.name.value,
         email: contactForm.email.value,
         subject: contactForm.subject.value,
-        message: contactForm.message.value
+        message: contactForm.message.value,
+        to_email: 'nathan13kelly@icloud.com' // Add recipient email
     };
 
     try {
-        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData);
+        await emailjs.send('service_hqkaxqd', 'template_1cc4fg8', formData);
         showFormStatus('Message sent successfully! I will get back to you soon.', 'success');
         contactForm.reset();
         contactForm.querySelectorAll('.is-valid').forEach(input => {
